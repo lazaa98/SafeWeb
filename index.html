@@ -1,246 +1,422 @@
-<!DOCTYPE html>
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
 <html lang="sr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emerald Lounge | Luksuzni Kafe & Bar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #050a09; color: #e2e8f0; scroll-behavior: smooth; }
-        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
-        .emerald-text { color: #10b981; }
-        .gold-text { color: #d4af37; }
-        .bg-emerald-dark { background-color: #0a1210; }
-        
-        /* Glassmorphism za navigaciju */
-        .nav-glass {
-            background: rgba(5, 10, 9, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SafeWeb Studio — Izrada Web Sajtova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --bg2: #111111; --bg3: #181818;
+      --accent: #c9a84c; --accent2: #e8c97a;
+      --text: #f0ede8; --muted: #888880; --border: #2a2a2a;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
 
-        /* Custom styling za input polja */
-        input, select, textarea {
-            background-color: #0d1a17 !important;
-            border: 1px solid #132a24 !important;
-            color: white !important;
-        }
-        input:focus { border-color: #d4af37 !important; outline: none; }
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 5%; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: border-color 0.3s; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--text); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { background: var(--accent) !important; color: #0a0a0a !important; padding: 0.6rem 1.4rem; border-radius: 2px; font-weight: 500 !important; }
+    .nav-cta:hover { background: var(--accent2) !important; }
 
-        /* Animacija za dugmad */
-        .btn-luxury {
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-luxury:hover {
-            letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-    </style>
+    /* HERO */
+    #hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 5% 5rem; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 70%); }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%); }
+    .hero-content { position: relative; max-width: 720px; }
+    .hero-tag { display: inline-block; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(201,168,76,0.3); padding: 0.4rem 1rem; border-radius: 2px; margin-bottom: 2rem; animation: fadeUp 0.8s ease both; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; line-height: 1.05; margin-bottom: 1.5rem; animation: fadeUp 0.8s 0.1s ease both; }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 500px; margin-bottom: 2.5rem; animation: fadeUp 0.8s 0.2s ease both; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.3s ease both; }
+    .btn-primary { background: var(--accent); color: #0a0a0a; padding: 0.9rem 2rem; border: none; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.3s, transform 0.2s; }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--text); padding: 0.9rem 2rem; border: 1px solid var(--border); border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; letter-spacing: 0.05em; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.3s, color 0.3s; }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-stats { position: absolute; right: 5%; bottom: 15%; display: flex; flex-direction: column; gap: 2rem; animation: fadeUp 0.8s 0.4s ease both; }
+    .stat { text-align: right; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* SECTIONS */
+    section { padding: 6rem 5%; }
+    .section-tag { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: block; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
+    .section-sub { color: var(--muted); max-width: 520px; margin-bottom: 3.5rem; }
+
+    /* SERVICES */
+    #usluge { background: var(--bg2); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5px; background: var(--border); border: 1px solid var(--border); }
+    .service-card { background: var(--bg2); padding: 2.5rem; position: relative; overflow: hidden; transition: background 0.3s; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--accent); transition: height 0.4s ease; }
+    .service-card:hover { background: var(--bg3); }
+    .service-card:hover::before { height: 100%; }
+    .service-icon { font-size: 2rem; margin-bottom: 1.5rem; display: block; }
+    .service-num { position: absolute; top: 1.5rem; right: 1.5rem; font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: rgba(201,168,76,0.06); line-height: 1; }
+    .service-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .service-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+    /* PROCESS */
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 2rem; left: 2rem; right: 2rem; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.3; }
+    .step { padding: 2rem; }
+    .step-num { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 900; color: var(--accent); opacity: 0.2; line-height: 1; margin-bottom: 1rem; display: block; }
+    .step-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .step-desc { font-size: 0.875rem; color: var(--muted); }
+
+    /* PRICING */
+    #cene { background: var(--bg2); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .price-card { background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem; position: relative; transition: border-color 0.3s, transform 0.3s; }
+    .price-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-4px); }
+    .price-card.featured { border-color: var(--accent); background: var(--bg3); }
+    .featured-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #0a0a0a; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 0 0 4px 4px; }
+    .price-plan { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .price-amount { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1; margin-bottom: 0.25rem; }
+    .price-amount span { font-size: 1.2rem; color: var(--muted); }
+    .price-period { font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
+    .price-divider { height: 1px; background: var(--border); margin-bottom: 2rem; }
+    .price-features { list-style: none; margin-bottom: 2rem; }
+    .price-features li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .price-features li::before { content: 'v'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+    /* FAQ */
+    .faq-list { max-width: 720px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { width: 100%; background: none; border: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 1rem; text-align: left; padding: 1.5rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; transition: color 0.3s; }
+    .faq-q:hover { color: var(--accent); }
+    .faq-icon { width: 20px; height: 20px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.8rem; transition: background 0.3s, border-color 0.3s; }
+    .faq-item.open .faq-icon { background: var(--accent); border-color: var(--accent); color: #0a0a0a; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a-inner { padding-bottom: 1.5rem; color: var(--muted); font-size: 0.95rem; line-height: 1.8; }
+
+    /* CONTACT */
+    #kontakt { background: var(--bg2); position: relative; overflow: hidden; }
+    #kontakt::before { content: ''; position: absolute; bottom: 0; right: 0; width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-info p { color: var(--muted); margin-bottom: 2.5rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+    .contact-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+    .contact-item a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .contact-item a:hover { color: var(--accent); }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .form-group input, .form-group textarea, .form-group select { background: var(--bg); border: 1px solid var(--border); border-radius: 2px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; padding: 0.8rem 1rem; outline: none; transition: border-color 0.3s; width: 100%; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
+    .form-group select option { background: var(--bg2); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    /* FOOTER */
+    footer { padding: 2rem 5%; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy { font-size: 0.8rem; color: var(--muted); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-stats { display: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="flex justify-between items-center px-6 md:px-12 py-5 sticky top-0 z-50 nav-glass">
-        <div class="text-xl md:text-2xl font-bold tracking-[0.2em] uppercase">
-            Emerald<span class="gold-text">Lounge</span>
+<nav>
+  <a href="#" class="logo">SafeWeb<span> Studio</span></a>
+  <ul class="nav-links">
+    <li><a href="#usluge">Usluge</a></li>
+    <li><a href="#proces">Proces</a></li>
+    <li><a href="#cene">Cene</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Profesionalna izrada web sajtova</span>
+    <h1 class="hero-title">Sajt koji<br/><em>prodaje</em><br/>za vas.</h1>
+    <p class="hero-sub">Pravimo moderne, brze i bezbedne web sajtove za firme i preduzetnike u Srbiji. Bez kompromisa, bez generickih resenja.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Zatrazite ponudu</a>
+      <a href="#usluge" class="btn-outline">Pogledajte usluge</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Projekata</div></div>
+    <div class="stat"><div class="stat-num">3-7</div><div class="stat-label">Dana isporuke</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Zadovoljnih klijenata</div></div>
+  </div>
+</section>
+
+<section id="usluge">
+  <span class="section-tag reveal">Sta radimo</span>
+  <h2 class="section-title reveal">Nase usluge</h2>
+  <p class="section-sub reveal">Od jednostavnih landing stranica do kompleksnih web aplikacija — svaki projekat dobija punu paznju.</p>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <span class="service-icon">🎯</span><span class="service-num">01</span>
+      <div class="service-name">Landing Page</div>
+      <p class="service-desc">Jedna stranica fokusirana na konverziju. Idealno za promociju usluge, proizvoda ili kampanje. Brza isporuka, maksimalan efekat.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🏢</span><span class="service-num">02</span>
+      <div class="service-name">Poslovni Sajt</div>
+      <p class="service-desc">Visestranični sajt koji predstavlja vasu firmu profesionalno. O nama, usluge, kontakt, blog — sve sto vam treba.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🛒</span><span class="service-num">03</span>
+      <div class="service-name">Online Prodavnica</div>
+      <p class="service-desc">WooCommerce ili Shopify prodavnice sa integracijom placanja, upravljanjem zalihama i automatizacijom narodzbi.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🔐</span><span class="service-num">04</span>
+      <div class="service-name">WordPress i Bezbednost</div>
+      <p class="service-desc">Izrada WordPress sajta uz profesionalnu security konfiguraciju. Vas sajt zasticen od prvog dana.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">⚡</span><span class="service-num">05</span>
+      <div class="service-name">Optimizacija i SEO</div>
+      <p class="service-desc">Ubrzavanje postojecih sajtova, Core Web Vitals optimizacija i on-page SEO za bolji ranking na Google-u.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🔧</span><span class="service-num">06</span>
+      <div class="service-name">Odrzavanje i Podrska</div>
+      <p class="service-desc">Mesecni retainer sa redovnim azuriranjima, backupom, monitoringom i brzom podrscom kada vam zatreba.</p>
+    </div>
+  </div>
+</section>
+
+<section id="proces">
+  <span class="section-tag reveal">Kako radimo</span>
+  <h2 class="section-title reveal">Proces saradnje</h2>
+  <p class="section-sub reveal">Jednostavan i transparentan proces od prvog razgovora do live sajta.</p>
+  <div class="process-steps reveal">
+    <div class="step"><span class="step-num">01</span><div class="step-title">Razgovor</div><p class="step-desc">Razumemo vase ciljeve, potrebe i viziju. Besplatna konsultacija bez obaveze.</p></div>
+    <div class="step"><span class="step-num">02</span><div class="step-title">Ponuda</div><p class="step-desc">Saljemo detaljan predlog sa cenom, rokom i tacno sta dobijate.</p></div>
+    <div class="step"><span class="step-num">03</span><div class="step-title">Dizajn</div><p class="step-desc">Pravimo vizuelni koncept koji odrazava vas brend. Korekcije dok niste zadovoljni.</p></div>
+    <div class="step"><span class="step-num">04</span><div class="step-title">Razvoj</div><p class="step-desc">Kodiramo sajt sa fokusom na brzinu, SEO i mobilnu optimizaciju.</p></div>
+    <div class="step"><span class="step-num">05</span><div class="step-title">Lansiranje</div><p class="step-desc">Testiranje, finalna provera i postavljanje live. Vas sajt je spreman za posao.</p></div>
+  </div>
+</section>
+
+<section id="cene">
+  <span class="section-tag reveal">Transparentno</span>
+  <h2 class="section-title reveal">Cenovnik</h2>
+  <p class="section-sub reveal">Jasne cene bez skrivenih troskova. Svi paketi ukljucuju mobilnu optimizaciju i SSL.</p>
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <div class="price-plan">Starter</div>
+      <div class="price-amount">od <span>EUR </span>199</div>
+      <div class="price-period">jednokratno</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Landing page (1 stranica)</li>
+        <li>Mobilna optimizacija</li>
+        <li>SSL sertifikat</li>
+        <li>Kontakt forma</li>
+        <li>Osnovna SEO podesavanja</li>
+        <li>Isporuka 3-5 dana</li>
+      </ul>
+      <a href="#kontakt" class="btn-outline" style="display:block;text-align:center;">Zatrazite ponudu</a>
+    </div>
+    <div class="price-card featured">
+      <div class="featured-badge">Najpopularnije</div>
+      <div class="price-plan">Business</div>
+      <div class="price-amount">od <span>EUR </span>499</div>
+      <div class="price-period">jednokratno</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Do 6 stranica</li>
+        <li>WordPress CMS</li>
+        <li>Blog / Vesti sekcija</li>
+        <li>SEO optimizacija</li>
+        <li>Google Analytics integracija</li>
+        <li>Security konfiguracija</li>
+        <li>Isporuka 7-10 dana</li>
+      </ul>
+      <a href="#kontakt" class="btn-primary" style="display:block;text-align:center;">Zatrazite ponudu</a>
+    </div>
+    <div class="price-card">
+      <div class="price-plan">E-commerce</div>
+      <div class="price-amount">od <span>EUR </span>999</div>
+      <div class="price-period">jednokratno</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>WooCommerce prodavnica</li>
+        <li>Do 50 proizvoda (setup)</li>
+        <li>Integracija placanja</li>
+        <li>Upravljanje narodzbi</li>
+        <li>Kuponi i popusti</li>
+        <li>Security i backup</li>
+        <li>Isporuka 10-14 dana</li>
+      </ul>
+      <a href="#kontakt" class="btn-outline" style="display:block;text-align:center;">Zatrazite ponudu</a>
+    </div>
+  </div>
+  <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:2rem;" class="reveal">Potrebno mesecno odrzavanje? Retainer paketi od 49 EUR/mes. Kontaktirajte nas za detalje.</p>
+</section>
+
+<section id="faq">
+  <span class="section-tag reveal">Pitanja</span>
+  <h2 class="section-title reveal">Cesto postavljana pitanja</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Koliko vremena treba da se napravi sajt?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Zavisi od kompleksnosti projekta. Landing stranica je gotova za 3-5 dana, poslovni sajt 7-10 dana, a online prodavnica 10-14 dana. Nakon sto dobijemo sve materijale od vas, pocinjemo odmah.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Da li mogu sam da menjam sadrzaj na sajtu?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Da, svi Business i E-commerce sajtovi dolaze sa WordPress CMS-om koji vam omogucava da samostalno menjate tekstove, slike i dodajete sadrzaj bez tehnickog znanja. Ukljucujemo i kratku obuku.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Sta mi sve treba da bih narucio sajt?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Osnovno sto vam treba: logo (ili mi mozemo preporuciti dizajnera), tekstove o vasoj firmi i nekoliko fotografija. Domena i hosting se mogu resiti zajedno sa nama.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Koliko kosta hosting i domena godisnje?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Domena (.com) kosta oko 10-15 evra godisnje. Kvalitetan hosting za WordPress sajt krece se od 30-60 evra godisnje. Ovi troskovi nisu ukljuceni u cenu izrade, ali vam pomozemo da odaberete najpovoljniju opciju.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Radite li sa klijentima van Beograda?<span class="faq-icon">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Apsolutno. Celokupna saradnja moze biti online — komunikacija putem Viber-a, WhatsApp-a ili e-maila. Imamo klijente iz cele Srbije i dijaspore.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <span class="section-tag reveal">Pocnite danas</span>
+  <h2 class="section-title reveal">Zatrazite besplatnu<br/>konsultaciju</h2>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <p>Ispunite formu i javicemo se u roku od 24 sata sa predlogom i okvirnom cenom za vas projekat.</p>
+      <div class="contact-item"><div class="contact-dot"></div><a href="mailto:info@safeweb.rs">info@safeweb.rs</a></div>
+      <div class="contact-item"><div class="contact-dot"></div><a href="tel:+381601234567">+381 60 123 4567</a></div>
+      <div class="contact-item"><div class="contact-dot"></div><span style="color:var(--muted)">Beograd, Srbija</span></div>
+      <div style="margin-top:2rem;">
+        <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Dostupni na</p>
+        <div style="display:flex;gap:1rem;">
+          <a href="#" style="color:var(--muted);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#888880'">Instagram</a>
+          <a href="#" style="color:var(--muted);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#888880'">LinkedIn</a>
+          <a href="#" style="color:var(--muted);text-decoration:none;font-size:0.85rem;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#888880'">Viber</a>
         </div>
-        <div class="hidden md:flex space-x-10 text-[11px] uppercase tracking-[0.2em]">
-            <a href="#" class="hover:text-[#d4af37] transition">Početna</a>
-            <a href="#o-nama" class="hover:text-[#d4af37] transition">O nama</a>
-            <a href="#meni" class="hover:text-[#d4af37] transition">Meni</a>
-            <a href="#rezervacija" class="hover:text-[#d4af37] transition">Rezervacije</a>
-        </div>
-        <a href="#rezervacija" class="hidden sm:block border border-[#d4af37] text-[#d4af37] px-6 py-2 text-[10px] uppercase tracking-widest btn-luxury">
-            Rezerviši sto
-        </a>
-    </nav>
+      </div>
+    </div>
+    <form class="contact-form" action="https://formspree.io/f/mlgogalw" method="POST" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group"><label>Ime i prezime</label><input type="text" name="ime" placeholder="Marko Markovic" required /></div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="marko@firma.rs" required /></div>
+      </div>
+      <div class="form-group">
+        <label>Tip projekta</label>
+        <select name="projekat">
+          <option value="">Izaberite...</option>
+          <option>Landing page</option>
+          <option>Poslovni sajt</option>
+          <option>Online prodavnica</option>
+          <option>Optimizacija postojeceg sajta</option>
+          <option>Mesecno odrzavanje</option>
+          <option>Nesto drugo</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Poruka</label><textarea name="poruka" placeholder="Opisite ukratko sta vam treba..."></textarea></div>
+      <button type="submit" class="btn-primary" style="width:100%;padding:1rem;">Posaljite poruku</button>
+      <p id="form-msg" style="display:none;text-align:center;font-size:0.9rem;margin-top:0.5rem;"></p>
+    </form>
+  </div>
+</section>
 
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" 
-             class="absolute inset-0 w-full h-full object-cover opacity-40 scale-105" alt="Cafe Interior">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#050a09]/50 to-[#050a09]"></div>
-        
-        <div class="relative z-10 text-center px-4">
-            <span class="gold-text uppercase tracking-[0.5em] text-xs mb-5 block">Experience Excellence</span>
-            <h1 class="text-5xl md:text-8xl mb-8 leading-tight italic">Umetnost <br> Hedonizma</h1>
-            <div class="w-24 h-[1px] bg-[#d4af37] mx-auto mb-8"></div>
-            <p class="max-w-2xl mx-auto text-gray-300 font-light text-sm md:text-base leading-relaxed tracking-wide">
-                Dobrodošli u prostor gde se vrhunska kafa susreće sa besprekornim dizajnom. 
-                Vaša dnevna doza luksuza u srcu grada.
-            </p>
-        </div>
-    </header>
+<footer>
+  <div class="footer-logo">SafeWeb<span> Studio</span></div>
+  <div class="footer-copy">2025 SafeWeb Studio. Sva prava zadrzana.</div>
+</footer>
 
-    <section id="o-nama" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div class="relative">
-                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop" 
-                     class="w-full h-[500px] object-cover rounded-sm shadow-2xl" alt="Coffee Craft">
-                <div class="absolute -bottom-6 -right-6 w-48 h-48 border border-emerald-900/30 -z-10"></div>
-            </div>
-            <div class="space-y-6">
-                <h2 class="text-4xl md:text-5xl italic mb-4">Više od obične kafe</h2>
-                <p class="text-gray-400 leading-loose font-light">
-                    Emerald Lounge je nastao iz vizije da se stvori utočište za istinske ljubitelje kofeina i mirne atmosfere. Naša zrna dolaze direktno sa malih, održivih plantaža iz Etiopije i Brazila, pržena do perfekcije.
-                </p>
-                <p class="text-gray-400 leading-loose font-light">
-                    Enterijer inspirisan smaragdnim tonovima i prirodnim materijalima pruža idealan ambijent za vaše jutarnje rituale, poslovne razgovore ili opuštanje uz knjigu u popodnevnim časovima.
-                </p>
-                <div class="pt-4">
-                    <a href="#meni" class="text-[#d4af37] uppercase text-xs tracking-widest border-b border-[#d4af37] pb-2 hover:text-white hover:border-white transition">Otkrijte našu priču</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    <section id="meni" class="py-24 bg-[#080f0d]">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <span class="gold-text text-xs uppercase tracking-[0.3em]">Selekcija</span>
-                <h2 class="text-4xl md:text-5xl mt-2 italic">Naš Meni</h2>
-            </div>
+  // FAQ
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-icon').textContent = '+';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.querySelector('.faq-icon').textContent = '-';
+    }
+  }
 
-            <div class="grid md:grid-cols-2 gap-x-20 gap-y-10">
-                <div class="space-y-8">
-                    <h3 class="text-emerald-500 uppercase tracking-widest text-sm font-bold border-b border-emerald-900/30 pb-2">Kafa & Topli Napici</h3>
-                    
-                    <div class="flex justify-between items-baseline group">
-                        <div>
-                            <h4 class="group-hover:text-[#d4af37] transition">Espresso Origin</h4>
-                            <p class="text-[10px] text-gray-500 italic uppercase">100% Arabica, Etiopija</p>
-                        </div>
-                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
-                        <span class="gold-text">240 RSD</span>
-                    </div>
+  // Formspree
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type=submit]');
+    const msg = document.getElementById('form-msg');
+    btn.disabled = true;
+    btn.textContent = 'Slanje...';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        msg.style.display = 'block';
+        msg.style.color = '#c9a84c';
+        msg.textContent = 'Poruka je poslata! Javicemo se uskoro.';
+        form.reset();
+        btn.textContent = 'Poslato';
+      } else {
+        msg.style.display = 'block';
+        msg.style.color = '#e05555';
+        msg.textContent = 'Greska pri slanju. Pokusajte ponovo.';
+        btn.disabled = false;
+        btn.textContent = 'Posaljite poruku';
+      }
+    } catch(err) {
+      msg.style.display = 'block';
+      msg.style.color = '#e05555';
+      msg.textContent = 'Greska. Proverite internet konekciju.';
+      btn.disabled = false;
+      btn.textContent = 'Posaljite poruku';
+    }
+  }
 
-                    <div class="flex justify-between items-baseline group">
-                        <div>
-                            <h4 class="group-hover:text-[#d4af37] transition">Emerald Flat White</h4>
-                            <p class="text-[10px] text-gray-500 italic uppercase">Double shot, svileno mleko</p>
-                        </div>
-                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
-                        <span class="gold-text">380 RSD</span>
-                    </div>
-
-                    <div class="flex justify-between items-baseline group">
-                        <div>
-                            <h4 class="group-hover:text-[#d4af37] transition">Pistachio Latte</h4>
-                            <p class="text-[10px] text-gray-500 italic uppercase">Signature drink kuće</p>
-                        </div>
-                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
-                        <span class="gold-text">460 RSD</span>
-                    </div>
-                </div>
-
-                <div class="space-y-8">
-                    <h3 class="text-emerald-500 uppercase tracking-widest text-sm font-bold border-b border-emerald-900/30 pb-2">Artisan Poslastice</h3>
-                    
-                    <div class="flex justify-between items-baseline group">
-                        <div>
-                            <h4 class="group-hover:text-[#d4af37] transition">Emerald Cheesecake</h4>
-                            <p class="text-[10px] text-gray-500 italic uppercase">Matcha, bela čokolada</p>
-                        </div>
-                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
-                        <span class="gold-text">520 RSD</span>
-                    </div>
-
-                    <div class="flex justify-between items-baseline group">
-                        <div>
-                            <h4 class="group-hover:text-[#d4af37] transition">Kroasan Pistać</h4>
-                            <p class="text-[10px] text-gray-500 italic uppercase">Domaći puter, sicilijanski pistaći</p>
-                        </div>
-                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
-                        <span class="gold-text">350 RSD</span>
-                    </div>
-
-                    <div class="flex justify-between items-baseline group">
-                        <div>
-                            <h4 class="group-hover:text-[#d4af37] transition">Raw Choco Bar</h4>
-                            <p class="text-[10px] text-gray-500 italic uppercase">Vegan, bez šećera</p>
-                        </div>
-                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
-                        <span class="gold-text">410 RSD</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="rezervacija" class="py-24 px-6">
-        <div class="max-w-4xl mx-auto bg-emerald-dark p-8 md:p-16 border border-emerald-900/20 shadow-2xl">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl italic">Rezervišite termin</h2>
-                <p class="text-gray-500 text-sm mt-4 uppercase tracking-widest">Obezbedite vaše premium iskustvo</p>
-            </div>
-            <form class="grid md:grid-cols-2 gap-8">
-                <input type="text" placeholder="Ime i prezime" class="w-full p-4 text-sm bg-transparent border-b">
-                <input type="email" placeholder="Email adresa" class="w-full p-4 text-sm bg-transparent border-b">
-                <input type="date" class="w-full p-4 text-sm bg-transparent border-b">
-                <select class="w-full p-4 text-sm bg-transparent border-b">
-                    <option class="bg-[#050a09]">2 Osobe</option>
-                    <option class="bg-[#050a09]">4 Osobe</option>
-                    <option class="bg-[#050a09]">Proslava / Event</option>
-                </select>
-                <button class="md:col-span-2 bg-[#d4af37] text-black font-bold py-4 uppercase text-[11px] tracking-[0.3em] hover:bg-white transition duration-500">
-                    Potvrdi dolazak
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <footer class="bg-[#030706] pt-20 pb-10 border-t border-emerald-900/20">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16">
-            <div class="space-y-6">
-                <div class="text-xl font-bold tracking-widest uppercase">
-                    Emerald<span class="gold-text">Lounge</span>
-                </div>
-                <p class="text-gray-500 text-xs leading-relaxed">
-                    Mesto gde se estetika i ukus spajaju. Vaš omiljeni kutak za rad i opuštanje od 2020. godine.
-                </p>
-                <div class="flex space-x-5 text-gray-400">
-                    <a href="#" class="hover:text-[#d4af37]"><i class="fab fa-instagram text-lg"></i></a>
-                    <a href="#" class="hover:text-[#d4af37]"><i class="fab fa-facebook-f text-lg"></i></a>
-                    <a href="#" class="hover:text-[#d4af37]"><i class="fab fa-pinterest text-lg"></i></a>
-                </div>
-            </div>
-
-            <div class="space-y-4">
-                <h4 class="uppercase text-[11px] tracking-widest gold-text font-bold">Kontakt</h4>
-                <p class="text-gray-500 text-sm">Knez Mihailova 12, Beograd</p>
-                <p class="text-gray-500 text-sm">+381 11 123 4567</p>
-                <p class="text-gray-500 text-sm">info@emerald-lounge.rs</p>
-            </div>
-
-            <div class="space-y-4">
-                <h4 class="uppercase text-[11px] tracking-widest gold-text font-bold">Radno Vreme</h4>
-                <div class="flex justify-between text-sm text-gray-500">
-                    <span>Radni dani</span>
-                    <span>08:00 - 23:00</span>
-                </div>
-                <div class="flex justify-between text-sm text-gray-500 border-t border-gray-900 pt-2">
-                    <span>Vikend</span>
-                    <span>09:00 - 01:00</span>
-                </div>
-            </div>
-
-            <div class="space-y-4">
-                <h4 class="uppercase text-[11px] tracking-widest gold-text font-bold">Newsletter</h4>
-                <p class="text-gray-500 text-[10px]">Budite u toku sa novim ukusima i događajima.</p>
-                <div class="flex border-b border-emerald-900">
-                    <input type="text" placeholder="Vaš email" class="bg-transparent border-none p-2 text-xs w-full focus:ring-0">
-                    <button class="gold-text px-2"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center pt-8 border-t border-gray-900 text-[9px] text-gray-600 uppercase tracking-[0.4em]">
-            &copy; 2024 Emerald Lounge. Dizajnirano za portfolio primer.
-        </div>
-    </footer>
-
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.borderBottomColor =
+      window.scrollY > 50 ? 'rgba(201,168,76,0.2)' : 'rgba(42,42,42,1)';
+  });
+</script>
 </body>
 </html>
