@@ -3,141 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emerald Lounge | Portfolio Demo</title>
+    <title>Emerald Lounge | Luksuzni Kafe & Bar</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         body { font-family: 'Montserrat', sans-serif; background-color: #050a09; color: #e2e8f0; scroll-behavior: smooth; }
         h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+        .emerald-text { color: #10b981; }
         .gold-text { color: #d4af37; }
         .bg-emerald-dark { background-color: #0a1210; }
         
-        /* Custom Input styling za formu */
+        /* Glassmorphism za navigaciju */
+        .nav-glass {
+            background: rgba(5, 10, 9, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        /* Custom styling za input polja */
         input, select, textarea {
             background-color: #0d1a17 !important;
             border: 1px solid #132a24 !important;
             color: white !important;
-            transition: all 0.3s ease;
         }
-        input:focus, select:focus, textarea:focus {
-            border-color: #10b981 !important;
-            outline: none;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+        input:focus { border-color: #d4af37 !important; outline: none; }
+
+        /* Animacija za dugmad */
+        .btn-luxury {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-luxury:hover {
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <nav class="flex justify-between items-center px-8 py-6 sticky top-0 bg-[#050a09]/90 backdrop-blur-md z-50 border-b border-emerald-900/20">
-        <div class="text-2xl font-bold tracking-widest uppercase">
+    <nav class="flex justify-between items-center px-6 md:px-12 py-5 sticky top-0 z-50 nav-glass">
+        <div class="text-xl md:text-2xl font-bold tracking-[0.2em] uppercase">
             Emerald<span class="gold-text">Lounge</span>
         </div>
-        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
-            <a href="#" class="hover:text-[#10b981] transition">Početna</a>
-            <a href="#meni" class="hover:text-[#10b981] transition">Meni</a>
-            <a href="#ambijent" class="hover:text-[#10b981] transition">Ambijent</a>
-            <a href="#rezervacija" class="hover:text-[#10b981] transition">Rezervacije</a>
+        <div class="hidden md:flex space-x-10 text-[11px] uppercase tracking-[0.2em]">
+            <a href="#" class="hover:text-[#d4af37] transition">Početna</a>
+            <a href="#o-nama" class="hover:text-[#d4af37] transition">O nama</a>
+            <a href="#meni" class="hover:text-[#d4af37] transition">Meni</a>
+            <a href="#rezervacija" class="hover:text-[#d4af37] transition">Rezervacije</a>
         </div>
-        <a href="#rezervacija" class="border border-[#d4af37] text-[#d4af37] px-6 py-2 text-xs uppercase tracking-widest hover:bg-[#d4af37] hover:text-black transition">
-            Rezerviši
+        <a href="#rezervacija" class="hidden sm:block border border-[#d4af37] text-[#d4af37] px-6 py-2 text-[10px] uppercase tracking-widest btn-luxury">
+            Rezerviši sto
         </a>
     </nav>
 
-    <header class="h-[60vh] flex items-center justify-center relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover opacity-30" alt="Cafe Background">
-        <div class="relative z-10 text-center">
-            <h1 class="text-6xl mb-4">Vrhunska Selekcija</h1>
-            <p class="gold-text uppercase tracking-[0.4em] text-sm">Gde luksuz susreće tradiciju</p>
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" 
+             class="absolute inset-0 w-full h-full object-cover opacity-40 scale-105" alt="Cafe Interior">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#050a09]/50 to-[#050a09]"></div>
+        
+        <div class="relative z-10 text-center px-4">
+            <span class="gold-text uppercase tracking-[0.5em] text-xs mb-5 block">Experience Excellence</span>
+            <h1 class="text-5xl md:text-8xl mb-8 leading-tight italic">Umetnost <br> Hedonizma</h1>
+            <div class="w-24 h-[1px] bg-[#d4af37] mx-auto mb-8"></div>
+            <p class="max-w-2xl mx-auto text-gray-300 font-light text-sm md:text-base leading-relaxed tracking-wide">
+                Dobrodošli u prostor gde se vrhunska kafa susreće sa besprekornim dizajnom. 
+                Vaša dnevna doza luksuza u srcu grada.
+            </p>
         </div>
     </header>
 
-    <section id="ambijent" class="py-24 px-8 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl mb-4 italic">Naš Ambijent</h2>
-            <p class="text-gray-500 text-sm uppercase tracking-widest">Dizajniran za vaše potpuno uživanje</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="md:col-span-2 h-[400px]">
-                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700" alt="Interior 1">
+    <section id="o-nama" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop" 
+                     class="w-full h-[500px] object-cover rounded-sm shadow-2xl" alt="Coffee Craft">
+                <div class="absolute -bottom-6 -right-6 w-48 h-48 border border-emerald-900/30 -z-10"></div>
             </div>
-            <div class="h-[400px]">
-                <img src="https://images.unsplash.com/photo-1559925393-8be0ec41b50d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700" alt="Interior 2">
-            </div>
-            <div class="h-[400px]">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700" alt="Interior 3">
-            </div>
-            <div class="md:col-span-2 h-[400px]">
-                <img src="https://images.unsplash.com/photo-1497933321110-302390638634?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700" alt="Interior 4">
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-emerald-900/10">
-        <div class="max-w-5xl mx-auto px-8">
-            <div class="grid md:grid-cols-3 gap-12 text-center">
-                <div class="space-y-4">
-                    <div class="gold-text text-xl">★★★★★</div>
-                    <p class="italic text-gray-300">"Najbolji espresso u gradu. Atmosfera je neverovatna, pravo mesto za poslovne sastanke."</p>
-                    <h4 class="uppercase tracking-widest text-xs font-bold">— Marko Jovanović</h4>
-                </div>
-                <div class="space-y-4">
-                    <div class="gold-text text-xl">★★★★★</div>
-                    <p class="italic text-gray-300">"Smaragdni detalji i usluga su na svetskom nivou. Pistaći kroasani su obavezni!"</p>
-                    <h4 class="uppercase tracking-widest text-xs font-bold">— Jelena Nikolić</h4>
-                </div>
-                <div class="space-y-4">
-                    <div class="gold-text text-xl">★★★★★</div>
-                    <p class="italic text-gray-300">"Enterijer koji ostavlja bez daha. Savršeno osvetljenje i veoma ljubazno osoblje."</p>
-                    <h4 class="uppercase tracking-widest text-xs font-bold">— Stefan Petrović</h4>
+            <div class="space-y-6">
+                <h2 class="text-4xl md:text-5xl italic mb-4">Više od obične kafe</h2>
+                <p class="text-gray-400 leading-loose font-light">
+                    Emerald Lounge je nastao iz vizije da se stvori utočište za istinske ljubitelje kofeina i mirne atmosfere. Naša zrna dolaze direktno sa malih, održivih plantaža iz Etiopije i Brazila, pržena do perfekcije.
+                </p>
+                <p class="text-gray-400 leading-loose font-light">
+                    Enterijer inspirisan smaragdnim tonovima i prirodnim materijalima pruža idealan ambijent za vaše jutarnje rituale, poslovne razgovore ili opuštanje uz knjigu u popodnevnim časovima.
+                </p>
+                <div class="pt-4">
+                    <a href="#meni" class="text-[#d4af37] uppercase text-xs tracking-widest border-b border-[#d4af37] pb-2 hover:text-white hover:border-white transition">Otkrijte našu priču</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="rezervacija" class="py-24 px-8">
-        <div class="max-w-4xl mx-auto bg-emerald-dark p-12 border border-emerald-900/30">
+    <section id="meni" class="py-24 bg-[#080f0d]">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="gold-text text-xs uppercase tracking-[0.3em]">Selekcija</span>
+                <h2 class="text-4xl md:text-5xl mt-2 italic">Naš Meni</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-x-20 gap-y-10">
+                <div class="space-y-8">
+                    <h3 class="text-emerald-500 uppercase tracking-widest text-sm font-bold border-b border-emerald-900/30 pb-2">Kafa & Topli Napici</h3>
+                    
+                    <div class="flex justify-between items-baseline group">
+                        <div>
+                            <h4 class="group-hover:text-[#d4af37] transition">Espresso Origin</h4>
+                            <p class="text-[10px] text-gray-500 italic uppercase">100% Arabica, Etiopija</p>
+                        </div>
+                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
+                        <span class="gold-text">240 RSD</span>
+                    </div>
+
+                    <div class="flex justify-between items-baseline group">
+                        <div>
+                            <h4 class="group-hover:text-[#d4af37] transition">Emerald Flat White</h4>
+                            <p class="text-[10px] text-gray-500 italic uppercase">Double shot, svileno mleko</p>
+                        </div>
+                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
+                        <span class="gold-text">380 RSD</span>
+                    </div>
+
+                    <div class="flex justify-between items-baseline group">
+                        <div>
+                            <h4 class="group-hover:text-[#d4af37] transition">Pistachio Latte</h4>
+                            <p class="text-[10px] text-gray-500 italic uppercase">Signature drink kuće</p>
+                        </div>
+                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
+                        <span class="gold-text">460 RSD</span>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="text-emerald-500 uppercase tracking-widest text-sm font-bold border-b border-emerald-900/30 pb-2">Artisan Poslastice</h3>
+                    
+                    <div class="flex justify-between items-baseline group">
+                        <div>
+                            <h4 class="group-hover:text-[#d4af37] transition">Emerald Cheesecake</h4>
+                            <p class="text-[10px] text-gray-500 italic uppercase">Matcha, bela čokolada</p>
+                        </div>
+                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
+                        <span class="gold-text">520 RSD</span>
+                    </div>
+
+                    <div class="flex justify-between items-baseline group">
+                        <div>
+                            <h4 class="group-hover:text-[#d4af37] transition">Kroasan Pistać</h4>
+                            <p class="text-[10px] text-gray-500 italic uppercase">Domaći puter, sicilijanski pistaći</p>
+                        </div>
+                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
+                        <span class="gold-text">350 RSD</span>
+                    </div>
+
+                    <div class="flex justify-between items-baseline group">
+                        <div>
+                            <h4 class="group-hover:text-[#d4af37] transition">Raw Choco Bar</h4>
+                            <p class="text-[10px] text-gray-500 italic uppercase">Vegan, bez šećera</p>
+                        </div>
+                        <div class="flex-grow border-b border-dotted border-gray-800 mx-4"></div>
+                        <span class="gold-text">410 RSD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rezervacija" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto bg-emerald-dark p-8 md:p-16 border border-emerald-900/20 shadow-2xl">
             <div class="text-center mb-12">
-                <h2 class="text-4xl mb-4">Rezervišite Vaš Sto</h2>
-                <p class="text-gray-500">Obezbedite svoje mesto u oazi luksuza na vreme.</p>
+                <h2 class="text-4xl italic">Rezervišite termin</h2>
+                <p class="text-gray-500 text-sm mt-4 uppercase tracking-widest">Obezbedite vaše premium iskustvo</p>
             </div>
-            
-            <form class="grid md:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-400">Vaše Ime</label>
-                    <input type="text" placeholder="Ime i prezime" class="w-full p-4 text-sm">
-                </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-400">Email Adresa</label>
-                    <input type="email" placeholder="primer@mail.com" class="w-full p-4 text-sm">
-                </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-400">Datum</label>
-                    <input type="date" class="w-full p-4 text-sm">
-                </div>
-                <div class="space-y-2">
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-400">Broj osoba</label>
-                    <select class="w-full p-4 text-sm appearance-none">
-                        <option>1 Osoba</option>
-                        <option>2 Osobe</option>
-                        <option>4 Osobe</option>
-                        <option>Grupna poseta (5+)</option>
-                    </select>
-                </div>
-                <div class="md:col-span-2 space-y-2">
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-gray-400">Posebne napomene</label>
-                    <textarea rows="4" placeholder="Vaša poruka..." class="w-full p-4 text-sm"></textarea>
-                </div>
-                <div class="md:col-span-2 text-center mt-6">
-                    <button type="button" class="bg-emerald-800 hover:bg-emerald-700 text-white px-12 py-4 transition uppercase text-xs tracking-[0.3em]">
-                        Potvrdi Rezervaciju
-                    </button>
-                </div>
+            <form class="grid md:grid-cols-2 gap-8">
+                <input type="text" placeholder="Ime i prezime" class="w-full p-4 text-sm bg-transparent border-b">
+                <input type="email" placeholder="Email adresa" class="w-full p-4 text-sm bg-transparent border-b">
+                <input type="date" class="w-full p-4 text-sm bg-transparent border-b">
+                <select class="w-full p-4 text-sm bg-transparent border-b">
+                    <option class="bg-[#050a09]">2 Osobe</option>
+                    <option class="bg-[#050a09]">4 Osobe</option>
+                    <option class="bg-[#050a09]">Proslava / Event</option>
+                </select>
+                <button class="md:col-span-2 bg-[#d4af37] text-black font-bold py-4 uppercase text-[11px] tracking-[0.3em] hover:bg-white transition duration-500">
+                    Potvrdi dolazak
+                </button>
             </form>
         </div>
     </section>
 
-    <footer class="py-12 border-t border-emerald-900/20 text-center text-gray-600 text-[10px] uppercase tracking-[0.5em]">
-        &copy; 2026 Emerald Lounge. Crafted for Excellence.
+    <footer class="bg-[#030706] pt-20 pb-10 border-t border-emerald-900/20">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16">
+            <div class="space-y-6">
+                <div class="text-xl font-bold tracking-widest uppercase">
+                    Emerald<span class="gold-text">Lounge</span>
+                </div>
+                <p class="text-gray-500 text-xs leading-relaxed">
+                    Mesto gde se estetika i ukus spajaju. Vaš omiljeni kutak za rad i opuštanje od 2020. godine.
+                </p>
+                <div class="flex space-x-5 text-gray-400">
+                    <a href="#" class="hover:text-[#d4af37]"><i class="fab fa-instagram text-lg"></i></a>
+                    <a href="#" class="hover:text-[#d4af37]"><i class="fab fa-facebook-f text-lg"></i></a>
+                    <a href="#" class="hover:text-[#d4af37]"><i class="fab fa-pinterest text-lg"></i></a>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="uppercase text-[11px] tracking-widest gold-text font-bold">Kontakt</h4>
+                <p class="text-gray-500 text-sm">Knez Mihailova 12, Beograd</p>
+                <p class="text-gray-500 text-sm">+381 11 123 4567</p>
+                <p class="text-gray-500 text-sm">info@emerald-lounge.rs</p>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="uppercase text-[11px] tracking-widest gold-text font-bold">Radno Vreme</h4>
+                <div class="flex justify-between text-sm text-gray-500">
+                    <span>Radni dani</span>
+                    <span>08:00 - 23:00</span>
+                </div>
+                <div class="flex justify-between text-sm text-gray-500 border-t border-gray-900 pt-2">
+                    <span>Vikend</span>
+                    <span>09:00 - 01:00</span>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="uppercase text-[11px] tracking-widest gold-text font-bold">Newsletter</h4>
+                <p class="text-gray-500 text-[10px]">Budite u toku sa novim ukusima i događajima.</p>
+                <div class="flex border-b border-emerald-900">
+                    <input type="text" placeholder="Vaš email" class="bg-transparent border-none p-2 text-xs w-full focus:ring-0">
+                    <button class="gold-text px-2"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center pt-8 border-t border-gray-900 text-[9px] text-gray-600 uppercase tracking-[0.4em]">
+            &copy; 2024 Emerald Lounge. Dizajnirano za portfolio primer.
+        </div>
     </footer>
 
 </body>
